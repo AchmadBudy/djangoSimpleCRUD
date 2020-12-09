@@ -3,8 +3,13 @@
 tata cara :
 install mysqlclient di pyhton
 setting db dulu di settings.py sesuaikan name nya dengan nama db kalian
+
+jangan lupa nyalakan mysql kalian atau kalau mau database lain bisa juga tinggal sesuaikan
+
 habis itu migrate
-pip manage.py migrate accounts 0002
+
+
+python manage.py migrate accounts 0002
 
 setelah itu bisa langsung run
-pip manage.py runserver
+python manage.py runserver

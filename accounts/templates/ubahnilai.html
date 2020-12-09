@@ -1,0 +1,42 @@
+{% extends 'temp.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Tambah Data Dosen
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <h3>{{ message }}</h3>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <form action="" method="POST"> 
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Nama Mahasiswa</label>
+                            <input class="form-control" type="text" id="exampleFormControlSelect1" placeholder="{{nama.nama}}" readonly >
+                            <input type="hidden" value="{{nama.id}}" name="idMhs">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">NIM Mahasiswa</label>
+                            <input class="form-control" type="text" id="exampleFormControlSelect1" placeholder="{{nama.nim}}" readonly>
+                        </div>
+                          {% for z in rapor %}
+                          <div class="form-group">
+                            <label for="{{z.id_matkul.nama_matakuliah}}">Nilai {{z.id_matkul.nama_matakuliah}}</label>
+                            <input type="txt" class="form-control" id="{{z.id_matkul.nama_matakuliah}}" name="{{z.id_matkul.nama_matakuliah}}" value="{{z.nilai}}"required>
+                          </div>
+                          {% endfor %}
+                        <button type="submit" class="btn btn-primary">Ubah</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

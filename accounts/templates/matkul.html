@@ -1,0 +1,59 @@
+{% extends 'temp.html' %}
+{% load static %}
+{% block tambahancss %}
+    <!-- Custom styles for this page -->
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Data Matakuliah</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        {% for message in messages %}
+                        <h3>{{ message }}</h3>
+                        {% endfor %}
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nama Matkul</th>
+                                    <th>Pengajar</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for x in matkul %}
+                                <tr>
+                                    <td>{{x.nama_matakuliah}}</td>
+                                    <td>{{x.id_dosen.nama}}</td>
+                                    <td>
+                                        <form action="{{BASE_DIR}}/matkul/delete" class="d-inline" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="idMatkul" value="{{x.id}}">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                        <a href="{{BASE_DIR}}/matkul/{{x.id}}" class="btn btn-warning">Ubah</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block tambahanjs %}
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'temp.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Tambah Data Dosen
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <h3>{{ message }}</h3>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <form action="" method="POST"> 
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <label for="namaDosen">Nama Dosen</label>
+                          <input type="txt" class="form-control" id="namaDosen" name="namaDosen" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

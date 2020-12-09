@@ -1,0 +1,39 @@
+{% extends 'temp.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Tambah Data Matakuliah
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <h3>{{ message }}</h3>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <form action="" method="POST"> 
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <label for="matkul">Nama Matakuliah</label>
+                          <input type="txt" class="form-control" id="matkul" name="matkul" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Nama Pengajar</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="idDosen">
+                            {% for x in lis_dosen %}
+                              <option value="{{ x.id }}">{{ x.nama }}</option>
+                            {% endfor %}
+                            </select>
+                          </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

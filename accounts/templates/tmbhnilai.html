@@ -1,0 +1,50 @@
+{% extends 'temp.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Tambah Data Dosen
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <h3>{{ message }}</h3>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <form action="" method="POST"> 
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">NIM Mahasiswa</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="idMhs">
+                            {% for x in mhs %}
+                            {% if raport %}
+                            {% for y in raport %}
+                                {% if x.id != y.id_mahasiswa_id %}
+                                <option value="{{ x.id }}">{{ x.nim }}</option>
+                                {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            <option value="{{ x.id }}">{{ x.nim }}</option>
+                            {% endif %}
+
+                            {% endfor %}
+                            </select>
+                          </div>
+                          {% for z in matkul %}
+                          <div class="form-group">
+                            <label for="{{z.nama_matakuliah}}">Nilai {{z.nama_matakuliah}}</label>
+                            <input type="txt" class="form-control" id="{{z.nama_matakuliah}}" name="{{z.nama_matakuliah}}" required>
+                          </div>
+                          {% endfor %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
